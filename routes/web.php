@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/survey', 'HomeController@index')->name('home');
+Route::get('/welcome', 'HomeController@index')->name('welcome');
 Route::get('/tambah', 'HomeController@tambah')->name('tambah');
 Route::post('/inputdata', 'HomeController@inputdata')->name('inputdata');
+Route::get('/survey','HomeController@tampil')->name('tampil');
+Route::get('/palindrome', 'HomeController@palindrome')->name('palindrome');
 

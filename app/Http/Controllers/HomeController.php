@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Siswa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 
 class HomeController extends Controller
@@ -25,7 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('survey');
+        $siswa = User::where('id', Auth::user()->id)->first();
+
+        // $siswa = Siswa::with('user')->get();
+        // dd($siswa);
+        return view('welcome', compact('siswa'));
     }
 
     public function tambah(){
@@ -33,6 +40,8 @@ class HomeController extends Controller
     }
 
     public function inputdata(Request $request){
+
+        $tanggal = Carbon::now();
         $request->validate([
             'name' => 'required|max:20',
             'email' => 'required|max:255',
@@ -51,9 +60,21 @@ class HomeController extends Controller
             'jurusan' => $request->jurusan,
             'gender' => $request->gender,
             'hoby' => $request->hoby,
-            'alamat' => $request->alamat
+            'alamat' => $request->alamat,
+            'tanggal' => $tanggal,
+            'id_data' => $request->id_data
 
         ]);
         return redirect('survey');
+    }
+    public function tampil(){
+        // $siswa = DB::table('siswa')->get();
+        $siswa = Siswa::with('user')->get();
+        // dd($siswa);
+        return view('survey', compact('siswa'));
+    }
+
+    public function palindrome(){
+        return view ('palindrome');
     }
 }

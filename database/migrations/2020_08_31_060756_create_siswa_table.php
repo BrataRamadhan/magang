@@ -22,7 +22,11 @@ class CreateSiswaTable extends Migration
             $table->string('gender');
             $table->string('hoby');
             $table->text('alamat');
+            $table->date('tanggal');
+            $table->bigInteger('id_data')->unsigned();
             $table->timestamps();
+
+            $table->foreign("id_data")->references("id")->on("users")->onDelete('cascade');
         });
     }
 

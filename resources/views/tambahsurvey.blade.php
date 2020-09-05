@@ -47,6 +47,7 @@
                   <label id="number-label">Number</label>
                   <input type="number" class="form-control" name="number" id="number" min="1" max="20" placeholder="max 20">
               </div>
+            <input type="hidden" name="id_data" value="{{Auth::user()->id}}">
                 <div class="form-group">
                   <label>Jurusan</label>
                   <select  class="form-control" id="dropdown" name="jurusan">

@@ -8,6 +8,12 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    const DEFAULT_TYPE = 'user';
+
+    public function siswa(){
+        return $this->hasMany(Siswa::class, 'id_data');
+    }
+
     use Notifiable;
 
     /**
@@ -36,4 +42,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }
